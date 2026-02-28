@@ -85,6 +85,8 @@
 
 | Skill | Purpose | Date |
 |-------|---------|------|
+| **Web Security Analyst** | Análisis de seguridad OWASP Top 10 | 2026-02-28 |
+| **QoS Bug Testing Agent** | Control de calidad y detección de bugs | 2026-02-28 |
 | **Clawy Archives Updater** | Sistema OBLIGATORIO de documentación | 2026-02-28 |
 | **Frontend Design Premium** | Senior UI/UX Engineer rules | 2026-02-24 |
 
