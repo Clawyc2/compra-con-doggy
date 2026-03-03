@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import SparkleButton from '../components/SparkleButton';
 
 // ============================================================
 // COMPRA CON DOGGY — Landing Page
@@ -94,20 +95,7 @@ function Hero() {
         </p>
 
         {/* CTA Button */}
-        <button style={{
-          background: '#7B2FF7',
-          color: '#FFFFFF',
-          border: 'none',
-          padding: '16px 40px',
-          borderRadius: 12,
-          fontSize: 16,
-          fontWeight: 700,
-          cursor: 'pointer',
-          boxShadow: '0 0 40px #7B2FF740',
-          transition: 'all 0.3s ease',
-        }}>
-          Comprar con MXN 💸
-        </button>
+        <SparkleButton text="Empieza ahora" />
 
         {/* Bottom text */}
         <p style={{
