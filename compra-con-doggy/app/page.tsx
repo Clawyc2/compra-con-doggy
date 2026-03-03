@@ -255,7 +255,63 @@ function Process() {
         OnChain Growth Cycle
       </h2>
 
-      {/* Grid 4 columnas */}
+      {/* Contenedor de números y línea */}
+      <div style={{
+        position: 'relative',
+        maxWidth: 1200,
+        margin: '0 auto 40px',
+      }}>
+        {/* Línea horizontal que conecta los puntos */}
+        <div style={{
+          position: 'absolute',
+          top: 60,
+          left: '12.5%',
+          right: '12.5%',
+          height: 2,
+          background: '#2a1a4a',
+          zIndex: 0,
+        }} />
+
+        {/* Grid de números */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 40,
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          {steps.map((step, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+              {/* Número grande */}
+              <div style={{
+                fontSize: 32,
+                fontWeight: 400,
+                marginBottom: 20,
+                color: '#ffffff',
+                textAlign: 'center',
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+              }}>
+                {step.num}
+              </div>
+
+              {/* Punto decorativo */}
+              <div style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: '#a78bfa',
+                marginBottom: 40,
+              }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Grid de cards */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -264,70 +320,47 @@ function Process() {
         margin: '0 auto',
       }}>
         {steps.map((step, i) => (
-          <div key={i}>
-            {/* Número grande arriba */}
+          <div key={i} style={{
+            background: '#2a1a4e',
+            border: '1px solid #3a2a6e',
+            borderRadius: 12,
+            padding: '40px 24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+          }}>
+            {/* Icono placeholder */}
             <div style={{
-              fontSize: 32,
-              fontWeight: 400,
-              marginBottom: 20,
+              fontSize: 120,
+              textAlign: 'center',
+              marginBottom: 24,
+              filter: 'drop-shadow(0 0 20px #a78bfa40)',
+            }}>
+              {step.icon}
+            </div>
+
+            {/* Título */}
+            <h3 style={{
+              fontSize: 20,
+              fontWeight: 600,
+              marginBottom: 12,
               color: '#ffffff',
               textAlign: 'center',
               fontFamily: "'Plus Jakarta Sans', sans-serif",
             }}>
-              {step.num}
-            </div>
+              {step.title}
+            </h3>
 
-            {/* Punto decorativo */}
-            <div style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              background: '#a78bfa',
-              margin: '0 auto 20px',
-            }} />
-
-            {/* Card con contenido */}
-            <div style={{
-              background: '#1a0d3a',
-              borderRadius: 12,
-              padding: '40px 24px',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+            {/* Descripción */}
+            <p style={{
+              fontSize: 14,
+              lineHeight: 1.6,
+              color: '#e0d0ff',
+              textAlign: 'center',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              maxWidth: 200,
+              margin: '0 auto',
             }}>
-              {/* Icono placeholder */}
-              <div style={{
-                fontSize: 120,
-                textAlign: 'center',
-                marginBottom: 24,
-                filter: 'drop-shadow(0 0 20px #a78bfa40)',
-              }}>
-                {step.icon}
-              </div>
-
-              {/* Título */}
-              <h3 style={{
-                fontSize: 20,
-                fontWeight: 600,
-                marginBottom: 12,
-                color: '#ffffff',
-                textAlign: 'center',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-              }}>
-                {step.title}
-              </h3>
-
-              {/* Descripción */}
-              <p style={{
-                fontSize: 14,
-                lineHeight: 1.6,
-                color: '#e0d0ff',
-                textAlign: 'center',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                maxWidth: 200,
-                margin: '0 auto',
-              }}>
-                {step.desc}
-              </p>
-            </div>
+              {step.desc}
+            </p>
           </div>
         ))}
       </div>
