@@ -1,82 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // ============================================================
-// DOGGY LANDING PAGE — La Memecoin Mexicana en Solana
+// COMPRA CON DOGGY — Landing Page
+// Réplica pixel-perfect del diseño de referencia
 // ============================================================
 
-export default function DoggyLanding() {
+export default function CompraConDoggy() {
   return (
     <div style={{
-      background: 'linear-gradient(180deg, #0a0a1a 0%, #0a0a0f 100%)',
-      fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif",
-      color: '#fff',
+      background: '#0A0B1A',
+      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      color: '#FFFFFF',
       minHeight: '100vh',
+      overflowX: 'hidden',
     }}>
       <FontLoader />
-      <Navbar />
       <Hero />
       <Process />
       <Features />
       <Benefits />
-      <Tokenomics />
       <Footer />
     </div>
   );
 }
 
-// ── NAVBAR ────────────────────────────────────────────────────
-function Navbar() {
-  return (
-    <nav style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 100,
-      padding: '20px 40px',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      background: 'rgba(10, 10, 26, 0.8)',
-      backdropFilter: 'blur(10px)',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <span style={{ fontSize: 28 }}>🐶</span>
-        <span style={{
-          fontSize: 24,
-          fontWeight: 900,
-          background: 'linear-gradient(135deg, #00FF87 0%, #FFD700 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        }}>
-          $DOGGY
-        </span>
-      </div>
-      
-      <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-        <a href="#que-es" style={{ color: '#888', textDecoration: 'none', fontSize: 14 }}>¿Qué es?</a>
-        <a href="#como-funciona" style={{ color: '#888', textDecoration: 'none', fontSize: 14 }}>Cómo funciona</a>
-        <a href="#tokenomics" style={{ color: '#888', textDecoration: 'none', fontSize: 14 }}>Tokenomics</a>
-        <button style={{
-          background: 'linear-gradient(135deg, #00FF87 0%, #00cc6a 100%)',
-          color: '#000',
-          border: 'none',
-          padding: '12px 28px',
-          borderRadius: 12,
-          fontWeight: 800,
-          fontSize: 14,
-          cursor: 'pointer',
-        }}>
-          Comprar con MXN 💸
-        </button>
-      </div>
-    </nav>
-  );
-}
-
-// ── HERO (Basado en Imagen 1) ───────────────────────────────────
+// ── HERO SECTION (Basado en Imagen 1) ───────────────────────────
 function Hero() {
   return (
     <section style={{
@@ -84,185 +34,207 @@ function Hero() {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
       alignItems: 'center',
-      padding: '100px 60px 60px',
+      padding: '80px 60px',
       gap: 60,
       position: 'relative',
-      overflow: 'hidden',
     }}>
-      {/* Glow effects */}
+      {/* Número decorativo */}
       <div style={{
         position: 'absolute',
-        top: '10%',
-        right: '20%',
-        width: 400,
-        height: 400,
-        background: 'radial-gradient(circle, #00FF8720 0%, transparent 70%)',
-        filter: 'blur(60px)',
-      }} />
-      
-      {/* Left content */}
+        top: 40,
+        right: 60,
+        fontSize: 80,
+        fontWeight: 900,
+        opacity: 0.1,
+        color: '#7B2FF7',
+      }}>1</div>
+
+      {/* LADO IZQUIERDO - Texto */}
       <div style={{ zIndex: 1 }}>
+        {/* Logo */}
         <div style={{
-          display: 'inline-flex',
+          display: 'flex',
           alignItems: 'center',
-          gap: 8,
-          background: '#00FF8715',
-          border: '1px solid #00FF8730',
-          borderRadius: 100,
-          padding: '8px 20px',
-          marginBottom: 24,
+          gap: 12,
+          marginBottom: 40,
         }}>
-          <span style={{ color: '#00FF87', fontSize: 13, fontWeight: 600 }}>🇲🇽 Hecho en México</span>
+          <span style={{ fontSize: 32 }}>🐶</span>
+          <span style={{
+            fontSize: 28,
+            fontWeight: 900,
+            background: 'linear-gradient(135deg, #7B2FF7, #A78BFA)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}>
+            Compra con Doggy
+          </span>
         </div>
-        
+
+        {/* Headline */}
         <h1 style={{
-          fontSize: 72,
+          fontSize: 56,
           fontWeight: 900,
           lineHeight: 1.1,
           marginBottom: 24,
+          letterSpacing: -0.5,
           maxWidth: 600,
         }}>
-          Compra <span style={{
-            background: 'linear-gradient(135deg, #00FF87 0%, #FFD700 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}>$DOGGY</span> con SPEI desde $50 pesos
+          Compra $DOGGY con SPEI desde $50 pesos
         </h1>
-        
+
+        {/* Subheadline */}
         <p style={{
-          fontSize: 20,
-          color: '#999',
+          fontSize: 18,
+          color: '#A0A0B0',
           lineHeight: 1.6,
           marginBottom: 40,
           maxWidth: 500,
         }}>
-          El primer onramp cripto para México y LATAM. Sin KYC, sin exchanges, sin complicaciones. Solo tu banco y tu Google.
+          El primer onramp cripto para México y LATAM. Sin KYC, sin exchanges, sin complicaciones. Conecta dinero fiat con la memecoin mexicana.
         </p>
-        
+
+        {/* CTA Button */}
         <button style={{
-          background: 'linear-gradient(135deg, #00FF87 0%, #00cc6a 100%)',
-          color: '#000',
+          background: '#7B2FF7',
+          color: '#FFFFFF',
           border: 'none',
-          padding: '18px 40px',
-          borderRadius: 14,
-          fontWeight: 900,
-          fontSize: 18,
+          padding: '16px 40px',
+          borderRadius: 12,
+          fontSize: 16,
+          fontWeight: 700,
           cursor: 'pointer',
-          boxShadow: '0 0 40px #00FF8740',
+          boxShadow: '0 0 40px #7B2FF740',
+          transition: 'all 0.3s ease',
         }}>
           Comprar con MXN 💸
         </button>
-        
-        <div style={{
-          display: 'flex',
-          gap: 48,
-          marginTop: 48,
+
+        {/* Bottom text */}
+        <p style={{
+          marginTop: 60,
+          fontSize: 20,
+          fontWeight: 700,
+          color: '#7B2FF7',
+          letterSpacing: 1,
         }}>
-          {[
-            { val: '$50 MXN', label: 'Mínimo' },
-            { val: '3%', label: 'Comisión' },
-            { val: '~2 min', label: 'Tiempo' },
-            { val: '0 KYC', label: 'Sin verifica' },
-          ].map((s, i) => (
-            <div key={i}>
-              <div style={{ fontSize: 28, fontWeight: 800, color: '#FFD700' }}>{s.val}</div>
-              <div style={{ fontSize: 12, color: '#666', marginTop: 4 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
+          OnChain Growth Cycle
+        </p>
       </div>
-      
-      {/* Right illustration */}
+
+      {/* LADO DERECHO - Ilustración */}
       <div style={{
         position: 'relative',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+        {/* Círculo principal con dots */}
         <div style={{
-          width: 480,
-          height: 480,
+          width: 500,
+          height: 500,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, #00FF8715 0%, transparent 70%)',
-          border: '2px solid #00FF8730',
+          border: '2px solid #7B2FF730',
+          position: 'relative',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          position: 'relative',
         }}>
-          {/* Floating elements */}
+          {/* Dots decorativos */}
+          {[...Array(12)].map((_, i) => (
+            <div key={i} style={{
+              position: 'absolute',
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: '#FFFFFF',
+              top: '50%',
+              left: '50%',
+              transform: `rotate(${i * 30}deg) translateY(-240px)`,
+            }} />
+          ))}
+
+          {/* Mascota centrada */}
+          <div style={{
+            fontSize: 200,
+            filter: 'drop-shadow(0 0 60px #7B2FF760)',
+          }}>
+            🐶
+          </div>
+
+          {/* Elementos flotantes */}
           <div style={{
             position: 'absolute',
-            top: 40,
+            top: 60,
             right: 80,
             fontSize: 48,
             animation: 'float 3s ease-in-out infinite',
           }}>💵</div>
           <div style={{
             position: 'absolute',
-            bottom: 60,
+            bottom: 100,
             left: 60,
             fontSize: 42,
             animation: 'float 3s ease-in-out infinite 1s',
           }}>💸</div>
           <div style={{
             position: 'absolute',
-            top: 120,
+            top: 140,
             left: 40,
             fontSize: 36,
             animation: 'float 3s ease-in-out infinite 2s',
-          }}>🇲🇽</div>
-          
-          {/* Mascot */}
-          <div style={{
-            fontSize: 180,
-            filter: 'drop-shadow(0 0 60px #00FF8760)',
-            animation: 'bounce 3s ease-in-out infinite',
-          }}>
-            🐶
-          </div>
+          }}>🏦</div>
         </div>
       </div>
-      
+
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-20px); }
-        }
-        @keyframes bounce {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
         }
       `}</style>
     </section>
   );
 }
 
-// ── PROCESS (Basado en Imagen 2) ───────────────────────────────
+// ── PROCESS SECTION (Basado en Imagen 2) ─────────────────────────
 function Process() {
   const steps = [
-    { num: '01', icon: '🔐', title: 'Login con Google', desc: 'Tu wallet de Solana se crea automáticamente con Privy. Sin seed phrases.' },
-    { num: '02', icon: '💰', title: 'Elige monto', desc: 'Desde $50 MXN. El sistema calcula cuántos $DOGGY recibirás.' },
-    { num: '03', icon: '🏦', title: 'Pago SPEI', desc: 'Transfiere a la CLABE única que te damos. Desde cualquier banco.' },
-    { num: '04', icon: '🚀', title: 'Recibe $DOGGY', desc: 'En menos de 2 minutos, directo a tu wallet. Sin intermediarios.' },
+    { num: '01', title: 'Login Google', desc: 'Tu wallet de Solana se crea automáticamente con Privy. Sin seed phrases.' },
+    { num: '02', title: 'Elige Monto', desc: 'Selecciona cuánto comprar. Desde $50 MXN. Tú decides.' },
+    { num: '03', title: 'Pago SPEI', desc: 'Transfiere a la CLABE única. Desde cualquier banco en México.' },
+    { num: '04', title: 'Recibe $DOGGY', desc: 'Tokens en tu wallet en menos de 2 minutos. Directo a ti.' },
   ];
 
   return (
-    <section id="como-funciona" style={{
-      padding: '100px 60px',
-      background: '#0a0a0f',
+    <section style={{
+      padding: '120px 60px',
+      background: '#1A0B3A',
+      position: 'relative',
     }}>
-      <div style={{ textAlign: 'center', marginBottom: 60 }}>
-        <h2 style={{
-          fontSize: 48,
-          fontWeight: 900,
-          marginBottom: 16,
-        }}>
-          <span style={{ color: '#00FF87' }}>4 pasos</span> para comprar $DOGGY
-        </h2>
-        <p style={{ color: '#666', fontSize: 18 }}>Sin KYC. Sin exchanges. Sin complicaciones.</p>
-      </div>
-      
+      {/* Número decorativo */}
+      <div style={{
+        position: 'absolute',
+        top: 40,
+        right: 60,
+        fontSize: 80,
+        fontWeight: 900,
+        opacity: 0.1,
+        color: '#7B2FF7',
+        fontFamily: 'cursive',
+      }}>2</div>
+
+      {/* Título */}
+      <h2 style={{
+        fontSize: 48,
+        fontWeight: 900,
+        textAlign: 'center',
+        marginBottom: 80,
+        color: '#FFFFFF',
+      }}>
+        OnChain Growth Cycle
+      </h2>
+
+      {/* Grid 4 columnas */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -272,42 +244,46 @@ function Process() {
       }}>
         {steps.map((step, i) => (
           <div key={i} style={{
-            background: `linear-gradient(180deg, #1a1a2e 0%, #16162a 100%)`,
-            border: '1px solid #00FF8720',
-            borderRadius: 20,
-            padding: 40,
+            background: '#2A1B5A',
+            borderRadius: 16,
+            padding: '40px 24px',
             position: 'relative',
           }}>
+            {/* Número de paso */}
             <div style={{
-              position: 'absolute',
-              top: -20,
-              left: 30,
-              background: 'linear-gradient(135deg, #00FF87, #00cc6a)',
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#000',
+              fontSize: 32,
               fontWeight: 900,
-              fontSize: 16,
+              marginBottom: 20,
+              color: '#7B2FF7',
             }}>
               {step.num}
             </div>
-            
-            <div style={{ fontSize: 56, marginBottom: 24 }}>{step.icon}</div>
-            
+
+            {/* Dot */}
+            <div style={{
+              width: 8,
+              height: 8,
+              borderRadius: '50%',
+              background: '#7B2FF7',
+              marginBottom: 24,
+            }} />
+
+            {/* Título */}
             <h3 style={{
               fontSize: 20,
-              fontWeight: 800,
+              fontWeight: 700,
               marginBottom: 12,
-              color: '#fff',
+              color: '#FFFFFF',
             }}>
               {step.title}
             </h3>
-            
-            <p style={{ color: '#777', fontSize: 15, lineHeight: 1.6 }}>
+
+            {/* Descripción */}
+            <p style={{
+              fontSize: 14,
+              lineHeight: 1.6,
+              color: '#A0A0B0',
+            }}>
               {step.desc}
             </p>
           </div>
@@ -317,74 +293,106 @@ function Process() {
   );
 }
 
-// ── FEATURES (Basado en Imagen 3) ───────────────────────────────
+// ── FEATURES SECTION (Basado en Imagen 3) ────────────────────────
 function Features() {
   const features = [
-    { icon: '🐕', title: 'Hecho en México', desc: 'Para la comunidad mexicana y latina' },
-    { icon: '⚡', title: 'Solana Network', desc: 'Transacciones rápidas y baratas' },
-    { icon: '🔐', title: 'Wallet automática', desc: 'Privy crea tu wallet sin seed phrase' },
-    { icon: '💸', title: '3% comisión', desc: 'Menos que cualquier exchange' },
-    { icon: '👥', title: 'Sistema referidos', desc: 'Gana 1% por cada compra' },
-    { icon: '🔄', title: 'Mercado P2P', desc: 'Vende sin afectar el precio' },
+    'Onramp SPEI sin KYC',
+    'Wallet automática con Privy',
+    'Comisión 3% (menos que exchanges)',
+    'Sistema de referidos on-chain',
+    'Mercado P2P interno',
+    'Tokens en 2 minutos',
   ];
 
   return (
-    <section id="que-es" style={{
-      padding: '100px 60px',
-      background: '#0a0a1a',
+    <section style={{
+      padding: '120px 60px',
+      background: 'linear-gradient(180deg, #1A0B3A 0%, #2A1B5A 100%)',
+      position: 'relative',
     }}>
+      {/* Número decorativo */}
+      <div style={{
+        position: 'absolute',
+        top: 40,
+        right: 60,
+        fontSize: 80,
+        fontWeight: 900,
+        opacity: 0.1,
+        color: '#7B2FF7',
+        fontFamily: 'cursive',
+      }}>3</div>
+
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '2fr 1fr',
-        gap: 40,
+        gridTemplateColumns: '2fr 1.5fr',
+        gap: 60,
         maxWidth: 1200,
         margin: '0 auto',
       }}>
-        {/* Main feature */}
+        {/* LADO IZQUIERDO */}
         <div style={{
-          background: 'linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%)',
-          border: '1px solid #00FF8720',
+          background: '#2A1B5A',
           borderRadius: 24,
           padding: 60,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
         }}>
-          <div style={{ fontSize: 80, marginBottom: 32 }}>🐶💰</div>
+          {/* Icono */}
+          <div style={{
+            fontSize: 100,
+            marginBottom: 32,
+            filter: 'drop-shadow(0 0 30px #7B2FF740)',
+          }}>
+            🐶💰
+          </div>
+
+          {/* Título */}
           <h2 style={{
-            fontSize: 42,
+            fontSize: 36,
             fontWeight: 900,
             marginBottom: 20,
             lineHeight: 1.2,
           }}>
-            La memecoin que <span style={{ color: '#00FF87' }}>sí llega</span> a tu cartera
+            Compra $DOGGY con pesos mexicanos
           </h2>
-          <p style={{ color: '#888', fontSize: 18, lineHeight: 1.7, maxWidth: 500 }}>
-            $DOGGY es el primer onramp cripto para México y LATAM. Compra tokens directamente con pesos mexicanos vía SPEI, sin KYC, sin exchanges, sin complicaciones.
+
+          {/* Descripción */}
+          <p style={{
+            fontSize: 16,
+            lineHeight: 1.6,
+            color: '#A0A0B0',
+          }}>
+            Conecta tu banco con la memecoin mexicana. SPEI directo a tokens en segundos. Sin KYC, sin exchanges, sin complicaciones.
           </p>
         </div>
-        
-        {/* Feature list */}
+
+        {/* LADO DERECHO - Lista de features */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 16,
+          gap: 20,
         }}>
-          {features.map((f, i) => (
+          {features.map((feature, i) => (
             <div key={i} style={{
-              background: '#0f0f1a',
-              border: '1px solid #00FF8715',
-              borderRadius: 16,
+              background: '#1A0B3A',
+              border: '1px solid #7B2FF720',
+              borderRadius: 12,
               padding: 20,
               display: 'flex',
               alignItems: 'center',
               gap: 16,
             }}>
-              <div style={{ fontSize: 32 }}>{f.icon}</div>
-              <div>
-                <div style={{ fontWeight: 700, marginBottom: 4, color: '#fff' }}>{f.title}</div>
-                <div style={{ color: '#666', fontSize: 13 }}>{f.desc}</div>
+              <div style={{
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                background: '#7B2FF720',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 16,
+              }}>
+                {['🔐', '💳', '💰', '👥', '🔄', '⚡'][i]}
               </div>
+              <span style={{ fontWeight: 600, color: '#FFFFFF' }}>{feature}</span>
             </div>
           ))}
         </div>
@@ -393,55 +401,78 @@ function Features() {
   );
 }
 
-// ── BENEFITS (Basado en Imagen 4) ───────────────────────────────
+// ── BENEFITS SECTION (Basado en Imagen 4) ────────────────────────
 function Benefits() {
   const projectBenefits = [
-    'Compra desde $50 MXN vía SPEI',
+    'Compra desde $50 MXN',
     'Wallet creada automáticamente',
     'Sin verificación de identidad',
     'Tokens en menos de 2 minutos',
-    'Comisión del 3% (menos que exchanges)',
-    'Sistema de referidos integrado',
+    'Comisión del 3% total',
+    'Compatible con Solana',
   ];
 
-  const userBenefits = [
-    'Vende en el mercado P2P interno',
-    'No afectas el precio del DEX',
-    'Gana 1% por cada referido',
-    'Wallet no-custodial (tus llaves, tus tokens)',
-    'Compatible con Jupiter y Raydium',
+  const holderBenefits = [
+    'Sistema de referidos (gana 1%)',
+    'Mercado P2P interno',
+    'No afectas el precio en DEX',
+    'Wallet no-custodial',
+    'Compatible con Jupiter/Raydium',
     'Comunidad mexicana activa',
   ];
 
   return (
     <section style={{
-      padding: '100px 60px',
-      background: '#0a0a0f',
+      padding: '120px 60px',
+      background: '#0A0B1A',
+      position: 'relative',
     }}>
-      <div style={{ textAlign: 'center', marginBottom: 60 }}>
-        <h2 style={{ fontSize: 48, fontWeight: 900, marginBottom: 16 }}>
-          ¿Por qué <span style={{ color: '#FFD700' }}>$DOGGY</span>?
-        </h2>
-      </div>
-      
+      {/* Número decorativo */}
+      <div style={{
+        position: 'absolute',
+        top: 40,
+        right: 60,
+        fontSize: 80,
+        fontWeight: 900,
+        opacity: 0.1,
+        color: '#7B2FF7',
+        fontFamily: 'cursive',
+      }}>4</div>
+
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: 32,
+        gap: 40,
         maxWidth: 1200,
         margin: '0 auto',
       }}>
-        {/* Column 1 */}
+        {/* Columna 1 - Compradores */}
         <div style={{
-          background: '#0f0f1a',
-          border: '1px solid #00FF8720',
+          background: '#0F0F1A',
+          border: '1px solid #7B2FF720',
           borderRadius: 20,
-          padding: 40,
+          padding: 48,
         }}>
-          <div style={{ fontSize: 48, marginBottom: 24 }}>🏦</div>
-          <h3 style={{ fontSize: 24, fontWeight: 800, marginBottom: 24, color: '#00FF87' }}>
+          {/* Icono */}
+          <div style={{
+            fontSize: 80,
+            marginBottom: 32,
+            filter: 'drop-shadow(0 0 20px #7B2FF740)',
+          }}>
+            🏦
+          </div>
+
+          {/* Título */}
+          <h3 style={{
+            fontSize: 24,
+            fontWeight: 900,
+            marginBottom: 32,
+            color: '#7B2FF7',
+          }}>
             Para compradores:
           </h3>
+
+          {/* Lista */}
           {projectBenefits.map((b, i) => (
             <div key={i} style={{
               display: 'flex',
@@ -449,117 +480,73 @@ function Benefits() {
               gap: 12,
               marginBottom: 16,
             }}>
-              <span style={{ color: '#00FF87', fontSize: 20 }}>✓</span>
-              <span style={{ color: '#ccc' }}>{b}</span>
+              <div style={{
+                width: 24,
+                height: 24,
+                borderRadius: '50%',
+                background: '#7B2FF7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 14,
+              }}>
+                ✓
+              </div>
+              <span style={{ color: '#D0D0D0', fontSize: 16 }}>{b}</span>
             </div>
           ))}
         </div>
-        
-        {/* Column 2 */}
+
+        {/* Columna 2 - Holders */}
         <div style={{
-          background: '#0f0f1a',
-          border: '1px solid #FFD70020',
+          background: '#0F0F1A',
+          border: '1px solid #7B2FF720',
           borderRadius: 20,
-          padding: 40,
+          padding: 48,
         }}>
-          <div style={{ fontSize: 48, marginBottom: 24 }}>💎</div>
-          <h3 style={{ fontSize: 24, fontWeight: 800, marginBottom: 24, color: '#FFD700' }}>
+          {/* Icono */}
+          <div style={{
+            fontSize: 80,
+            marginBottom: 32,
+            filter: 'drop-shadow(0 0 20px #7B2FF740)',
+          }}>
+            💎
+          </div>
+
+          {/* Título */}
+          <h3 style={{
+            fontSize: 24,
+            fontWeight: 900,
+            marginBottom: 32,
+            color: '#7B2FF7',
+          }}>
             Para holders:
           </h3>
-          {userBenefits.map((b, i) => (
+
+          {/* Lista */}
+          {holderBenefits.map((b, i) => (
             <div key={i} style={{
               display: 'flex',
               alignItems: 'center',
               gap: 12,
               marginBottom: 16,
             }}>
-              <span style={{ color: '#FFD700', fontSize: 20 }}>✓</span>
-              <span style={{ color: '#ccc' }}>{b}</span>
+              <div style={{
+                width: 24,
+                height: 24,
+                borderRadius: '50%',
+                background: '#7B2FF7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 14,
+              }}>
+                ✓
+              </div>
+              <span style={{ color: '#D0D0D0', fontSize: 16 }}>{b}</span>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-// ── TOKENOMICS ───────────────────────────────────────────────────
-function Tokenomics() {
-  const dist = [
-    { pct: '60%', label: 'Comunidad', color: '#00FF87' },
-    { pct: '20%', label: 'Liquidez', color: '#FFD700' },
-    { pct: '10%', label: 'Desarrollo', color: '#E8003D' },
-    { pct: '10%', label: 'Reserva', color: '#9945FF' },
-  ];
-
-  return (
-    <section id="tokenomics" style={{
-      padding: '100px 60px',
-      background: '#0a0a1a',
-    }}>
-      <div style={{ textAlign: 'center', marginBottom: 60 }}>
-        <h2 style={{ fontSize: 48, fontWeight: 900, marginBottom: 16 }}>
-          <span style={{ color: '#FFD700' }}>Tokenomics</span>
-        </h2>
-        <p style={{ color: '#666', fontSize: 18 }}>Distribución justa y transparente</p>
-      </div>
-      
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: 24,
-        maxWidth: 1000,
-        margin: '0 auto',
-      }}>
-        {dist.map((d, i) => (
-          <div key={i} style={{
-            background: '#0f0f1a',
-            border: `1px solid ${d.color}20`,
-            borderRadius: 20,
-            padding: 40,
-            textAlign: 'center',
-          }}>
-            <div style={{
-              fontSize: 56,
-              fontWeight: 900,
-              color: d.color,
-              marginBottom: 12,
-            }}>
-              {d.pct}
-            </div>
-            <div style={{ color: '#888', fontSize: 16 }}>{d.label}</div>
-            <div style={{
-              width: '100%',
-              height: 4,
-              background: '#1a1a2e',
-              borderRadius: 2,
-              marginTop: 20,
-              overflow: 'hidden',
-            }}>
-              <div style={{
-                width: d.pct,
-                height: '100%',
-                background: d.color,
-                borderRadius: 2,
-              }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      
-      <div style={{
-        textAlign: 'center',
-        marginTop: 48,
-        padding: 24,
-        background: '#00FF8710',
-        border: '1px solid #00FF8720',
-        borderRadius: 16,
-        maxWidth: 800,
-        margin: '48px auto 0',
-      }}>
-        <span style={{ color: '#00FF87', fontSize: 14 }}>
-          🔗 Contrato verificado en Solana — 100% transparente
-        </span>
       </div>
     </section>
   );
@@ -569,38 +556,56 @@ function Tokenomics() {
 function Footer() {
   return (
     <footer style={{
-      borderTop: '1px solid #ffffff10',
-      padding: '60px 40px',
+      padding: '80px 60px',
+      background: '#050508',
       textAlign: 'center',
     }}>
-      <div style={{ fontSize: 48, marginBottom: 16 }}>🐶</div>
+      {/* Logo */}
       <div style={{
-        fontSize: 28,
-        fontWeight: 900,
-        background: 'linear-gradient(135deg, #00FF87 0%, #FFD700 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12,
         marginBottom: 24,
       }}>
-        $DOGGY
+        <span style={{ fontSize: 40 }}>🐶</span>
+        <span style={{
+          fontSize: 32,
+          fontWeight: 900,
+          background: 'linear-gradient(135deg, #7B2FF7, #A78BFA)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
+          Compra con Doggy
+        </span>
       </div>
-      
+
+      {/* Links */}
       <div style={{
         display: 'flex',
         gap: 32,
         justifyContent: 'center',
         marginBottom: 32,
       }}>
-        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>Twitter/X</a>
-        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>Telegram</a>
-        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>Solscan</a>
+        <a href="#" style={{ color: '#A0A0B0', textDecoration: 'none' }}>Twitter/X</a>
+        <a href="#" style={{ color: '#A0A0B0', textDecoration: 'none' }}>Telegram</a>
+        <a href="#" style={{ color: '#A0A0B0', textDecoration: 'none' }}>Whitepaper</a>
+        <a href="#" style={{ color: '#A0A0B0', textDecoration: 'none' }}>Solscan</a>
       </div>
-      
-      <p style={{ color: '#444', fontSize: 13, maxWidth: 500, margin: '0 auto 16px', lineHeight: 1.6 }}>
-        $DOGGY no es consejo de inversión. Las criptomonedas son activos de alto riesgo. Invierta solo lo que pueda permitirse perder.
+
+      {/* Disclaimer */}
+      <p style={{
+        color: '#505060',
+        fontSize: 13,
+        maxWidth: 600,
+        margin: '0 auto 16px',
+        lineHeight: 1.6,
+      }}>
+        $DOGGY es un token experimental de naturaleza especulativa. Las criptomonedas son activos de alto riesgo. No inviertas dinero que no puedas permitirte perder.
       </p>
-      
-      <p style={{ color: '#333', fontSize: 13 }}>
+
+      {/* Copyright */}
+      <p style={{ color: '#404050', fontSize: 13 }}>
         © 2025 $DOGGY — Hecho con 🐶 en México
       </p>
     </footer>
@@ -612,6 +617,30 @@ function FontLoader() {
   return (
     <style>{`
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      @media (max-width: 768px) {
+        section {
+          padding: 60px 24px !important;
+        }
+        
+        h1 {
+          font-size: 36px !important;
+        }
+        
+        h2 {
+          font-size: 32px !important;
+        }
+      }
     `}</style>
   );
 }
