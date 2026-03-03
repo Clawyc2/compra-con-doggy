@@ -196,40 +196,61 @@ function Hero() {
   );
 }
 
-// ── PROCESS SECTION (Basado en Imagen 2) ─────────────────────────
+// ── PROCESS SECTION (Pixel-Perfect - Imagen 2) ─────────────────────────
 function Process() {
   const steps = [
-    { num: '01', title: 'Login Google', desc: 'Tu wallet de Solana se crea automáticamente con Privy. Sin seed phrases.' },
-    { num: '02', title: 'Elige Monto', desc: 'Selecciona cuánto comprar. Desde $50 MXN. Tú decides.' },
-    { num: '03', title: 'Pago SPEI', desc: 'Transfiere a la CLABE única. Desde cualquier banco en México.' },
-    { num: '04', title: 'Recibe $DOGGY', desc: 'Tokens en tu wallet en menos de 2 minutos. Directo a ti.' },
+    { 
+      num: '01', 
+      icon: '🔐', 
+      title: 'Login Google', 
+      desc: 'Tu wallet de Solana se crea automáticamente con Privy. Sin seed phrases.' 
+    },
+    { 
+      num: '02', 
+      icon: '💰', 
+      title: 'Elige Monto', 
+      desc: 'Selecciona cuánto comprar. Desde $50 MXN. Tú decides.' 
+    },
+    { 
+      num: '03', 
+      icon: '🏦', 
+      title: 'Pago SPEI', 
+      desc: 'Transfiere a la CLABE única. Desde cualquier banco en México.' 
+    },
+    { 
+      num: '04', 
+      icon: '🚀', 
+      title: 'Recibe $DOGGY', 
+      desc: 'Tokens en tu wallet en menos de 2 minutos. Directo a ti.' 
+    },
   ];
 
   return (
     <section style={{
-      padding: '120px 60px',
-      background: '#1A0B3A',
+      padding: '120px 80px',
+      background: '#0f0a30',
       position: 'relative',
     }}>
-      {/* Número decorativo */}
+      {/* Número decorativo grande */}
       <div style={{
         position: 'absolute',
         top: 40,
-        right: 60,
+        right: 80,
         fontSize: 80,
         fontWeight: 900,
         opacity: 0.1,
-        color: '#7B2FF7',
+        color: '#a78bfa',
         fontFamily: 'cursive',
       }}>2</div>
 
-      {/* Título */}
+      {/* Título principal */}
       <h2 style={{
-        fontSize: 48,
-        fontWeight: 900,
+        fontSize: 36,
+        fontWeight: 700,
         textAlign: 'center',
         marginBottom: 80,
-        color: '#FFFFFF',
+        color: '#ffffff',
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
       }}>
         OnChain Growth Cycle
       </h2>
@@ -238,54 +259,75 @@ function Process() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: 24,
+        gap: 40,
         maxWidth: 1200,
         margin: '0 auto',
       }}>
         {steps.map((step, i) => (
-          <div key={i} style={{
-            background: '#2A1B5A',
-            borderRadius: 16,
-            padding: '40px 24px',
-            position: 'relative',
-          }}>
-            {/* Número de paso */}
+          <div key={i}>
+            {/* Número grande arriba */}
             <div style={{
               fontSize: 32,
-              fontWeight: 900,
+              fontWeight: 400,
               marginBottom: 20,
-              color: '#7B2FF7',
+              color: '#ffffff',
+              textAlign: 'center',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
             }}>
               {step.num}
             </div>
 
-            {/* Dot */}
+            {/* Punto decorativo */}
             <div style={{
               width: 8,
               height: 8,
               borderRadius: '50%',
-              background: '#7B2FF7',
-              marginBottom: 24,
+              background: '#a78bfa',
+              margin: '0 auto 20px',
             }} />
 
-            {/* Título */}
-            <h3 style={{
-              fontSize: 20,
-              fontWeight: 700,
-              marginBottom: 12,
-              color: '#FFFFFF',
+            {/* Card con contenido */}
+            <div style={{
+              background: '#1a0d3a',
+              borderRadius: 12,
+              padding: '40px 24px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
             }}>
-              {step.title}
-            </h3>
+              {/* Icono placeholder */}
+              <div style={{
+                fontSize: 120,
+                textAlign: 'center',
+                marginBottom: 24,
+                filter: 'drop-shadow(0 0 20px #a78bfa40)',
+              }}>
+                {step.icon}
+              </div>
 
-            {/* Descripción */}
-            <p style={{
-              fontSize: 14,
-              lineHeight: 1.6,
-              color: '#A0A0B0',
-            }}>
-              {step.desc}
-            </p>
+              {/* Título */}
+              <h3 style={{
+                fontSize: 20,
+                fontWeight: 600,
+                marginBottom: 12,
+                color: '#ffffff',
+                textAlign: 'center',
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+              }}>
+                {step.title}
+              </h3>
+
+              {/* Descripción */}
+              <p style={{
+                fontSize: 14,
+                lineHeight: 1.6,
+                color: '#e0d0ff',
+                textAlign: 'center',
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                maxWidth: 200,
+                margin: '0 auto',
+              }}>
+                {step.desc}
+              </p>
+            </div>
           </div>
         ))}
       </div>
