@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { UsernameModal } from "@/components/UsernameModal";
 import { WalletPageReal } from "@/components/WalletPage";
-// BuyPage está definido localmente en este archivo
+import BuyPageNew from "@/components/BuyPageNew";
 
 interface DbUser {
   id: string;
@@ -265,7 +265,7 @@ export default function AppPage() {
         {/* Page content */}
         <div className="flex-1 overflow-y-auto p-[22px_24px]">
           {currentPage === "dashboard" && <DashboardPage dbUser={dbUser} />}
-          {currentPage === "buy" && <BuyPage dbUser={dbUser} />}
+          {currentPage === "buy" && <BuyPageNew dbUser={dbUser} />}
           {currentPage === "sell" && <SellPage />}
           {currentPage === "chart" && <ChartPage />}
           {currentPage === "wallet" && <WalletPageReal dbUser={dbUser} />}
@@ -400,129 +400,6 @@ function TxRow({ icon, type, title, desc, amount, sub, amountColor }: {
       <div className="text-right shrink-0">
         <div className={`text-[13px] font-bold ${amountColors[amountColor]}`}>{amount}</div>
         <div className="text-[10.5px] text-[#444460] mt-0.5 font-mono">{sub}</div>
-      </div>
-    </div>
-  );
-}
-
-// Buy Page
-function BuyPage({ dbUser }: { dbUser?: DbUser | null }) {
-  const [amount, setAmount] = useState(200);
-  const DOGGY_PRICE = 0.00000234;
-  const buyFee = amount * 0.03;
-  const buyNet = (amount - buyFee) * 0.056;
-  const doggyReceived = Math.floor(buyNet / DOGGY_PRICE);
-  const quickAmounts = [50, 100, 200, 500, 1000];
-
-  return (
-    <div>
-      <div className="mb-5">
-        <h1 className="font-['Syne',sans-serif] font-extrabold text-[22px]">Comprar $DOGGY ⚡</h1>
-        <p className="text-[#8888a8] text-[13.5px] mt-0.5">Paga con SPEI desde cualquier banco mexicano · Sin KYC · Mínimo $50 MXN</p>
-      </div>
-
-      <div className="grid grid-cols-[1fr_340px] gap-4.5 max-w-[860px]">
-        {/* Main card */}
-        <div className="bg-[#0d0d14] border border-white/[0.07] rounded-[14px] p-5.5">
-          <h2 className="font-['Syne',sans-serif] font-extrabold text-[19px]">¿Cuánto quieres invertir?</h2>
-          <p className="text-[#8888a8] text-[13px] mb-5.5">En minutos, $DOGGY llega directo a tu wallet Privy.</p>
-
-          <label className="text-[11px] font-bold text-[#444460] uppercase tracking-[0.08em] block mb-1.5">Monto en MXN</label>
-          <div className="relative mb-3">
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(Number(e.target.value))}
-              min={50}
-              className="w-full bg-[#13131e] border-[1.5px] border-white/[0.07] rounded-lg px-3.5 py-3 pr-14 text-[17px] font-mono font-bold outline-none focus:border-[#f5c842] transition-colors"
-            />
-            <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[12px] font-bold text-[#444460]">MXN</span>
-          </div>
-
-          <div className="flex gap-1.5 mb-4">
-            {quickAmounts.map((a) => (
-              <button
-                key={a}
-                onClick={() => setAmount(a)}
-                className="bg-[#13131e] border border-white/[0.07] rounded-md px-2.5 py-1 text-[12px] text-[#8888a8] font-medium hover:bg-[rgba(245,200,66,0.12)] hover:text-[#f5c842] hover:border-[rgba(245,200,66,0.3)] transition-all"
-              >
-                ${a}
-              </button>
-            ))}
-          </div>
-
-          <div className="bg-[#13131e] border border-white/[0.07] rounded-lg px-3.5 py-3 flex justify-between items-center mb-2.5">
-            <span className="text-[12px] text-[#8888a8]">Recibirás aproximadamente</span>
-            <span className="font-mono text-[14px] font-bold text-[#f5c842]">{doggyReceived.toLocaleString()} $DOGGY</span>
-          </div>
-
-          <div className="bg-[#13131e] border border-white/[0.07] rounded-lg px-3.5 py-3 flex justify-between items-center mb-3">
-            <span className="text-[12px] text-[#8888a8]">Comisión plataforma (3%)</span>
-            <span className="font-mono text-[13px] font-bold">${buyFee.toFixed(2)}</span>
-          </div>
-
-          <button className="w-full py-3.5 bg-gradient-to-br from-[#f5c842] to-[#e6a800] rounded-[11px] font-['Syne',sans-serif] font-extrabold text-[15px] text-black shadow-[0_4px_22px_rgba(245,200,66,0.22)] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(245,200,66,0.22)] transition-all">
-            ⚡ Pagar con MercadoPago / SPEI
-          </button>
-
-          <div className="bg-[#13131e] border border-white/[0.07] rounded-lg px-3.5 py-3.5 mt-3.5">
-            <div className="text-[10px] font-bold text-[#444460] uppercase tracking-[0.08em] mb-2">Flujo de pago</div>
-            <div className="flex items-start gap-2.5 py-1.5">
-              <div className="w-5 h-5 bg-[#f5c842] text-black rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 mt-0.5">1</div>
-              <p className="text-[12.5px] text-[#8888a8] leading-relaxed"><strong className="text-[#f0f0f5]">MercadoPago abre el checkout</strong> — elige SPEI como método de pago</p>
-            </div>
-            <div className="flex items-start gap-2.5 py-1.5">
-              <div className="w-5 h-5 bg-[#f5c842] text-black rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 mt-0.5">2</div>
-              <p className="text-[12.5px] text-[#8888a8] leading-relaxed"><strong className="text-[#f0f0f5]">Realiza el SPEI</strong> — recibes la CLABE destino</p>
-            </div>
-            <div className="flex items-start gap-2.5 py-1.5">
-              <div className="w-5 h-5 bg-[#f5c842] text-black rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 mt-0.5">3</div>
-              <p className="text-[12.5px] text-[#8888a8] leading-relaxed"><strong className="text-[#f0f0f5]">Webhook confirma</strong> — el sistema compra $DOGGY vía Jupiter en PumpSwap</p>
-            </div>
-            <div className="flex items-start gap-2.5 py-1.5">
-              <div className="w-5 h-5 bg-[#f5c842] text-black rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 mt-0.5">4</div>
-              <p className="text-[12.5px] text-[#8888a8] leading-relaxed"><strong className="text-[#f0f0f5]">$DOGGY en tu wallet</strong> — automáticamente</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Summary card */}
-        <div className="bg-[#0d0d14] border border-white/[0.07] rounded-[14px] p-4.5">
-          <div className="font-['Syne',sans-serif] font-bold text-sm mb-3.5">Resumen</div>
-          <div className="space-y-0">
-            <InfoRow label="Pagas" value={`$${amount.toFixed(2)} MXN`} />
-            <InfoRow label="Comisión (3%)" value={`$${buyFee.toFixed(2)} MXN`} />
-            <InfoRow label="Precio $DOGGY" value="$0.00000234" />
-            <InfoRow label="Recibes" value={`${doggyReceived.toLocaleString()} DOGGY`} gold />
-            <InfoRow label="Red" value="Solana ⚡" />
-            <InfoRow label="Tiempo estimado" value="~2 min" green />
-            <InfoRow label="KYC" value="No requerido ✓" green last />
-          </div>
-
-          <div className="mt-3.5 bg-[#13131e] border border-[rgba(245,200,66,0.15)] rounded-lg px-3 py-2.5">
-            <div className="text-[10px] text-[#444460] uppercase tracking-[0.08em] mb-1">Wallet destino</div>
-            <div className="font-mono text-[11.5px] text-[#f5c842]">
-              {dbUser?.wallet_address 
-                ? `${dbUser.wallet_address.slice(0, 8)}...${dbUser.wallet_address.slice(-6)}`
-                : "Sin wallet"}
-            </div>
-            <div className="text-[10px] text-[#444460] mt-0.5">Tu wallet Privy embebida</div>
-          </div>
-
-          <div className="mt-3.5">
-            <div className="text-[10px] font-bold text-[#444460] uppercase tracking-[0.08em] mb-2">Métodos aceptados</div>
-            <div className="flex items-center gap-2 text-[13px] px-2.5 py-1.5 rounded-lg bg-[#13131e] border border-[rgba(245,200,66,0.25)] mb-1.5">
-              <span>🏦</span> SPEI 
-              <span className="ml-auto bg-[rgba(34,197,94,0.12)] text-[#22c55e] border border-[rgba(34,197,94,0.25)] text-[11px] font-bold px-2 py-0.5 rounded-full">Recomendado</span>
-            </div>
-            <div className="flex items-center gap-2 text-[13px] px-2.5 py-1.5 rounded-lg bg-[#13131e] border border-white/[0.07] mb-1.5">
-              <span>💳</span> Tarjeta débito / crédito
-            </div>
-            <div className="flex items-center gap-2 text-[13px] px-2.5 py-1.5 rounded-lg bg-[#13131e] border border-white/[0.07]">
-              <span>🟢</span> OXXO Pay
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
