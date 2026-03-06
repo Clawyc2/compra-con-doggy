@@ -1,5 +1,6 @@
 "use client";
 
+// Force rebuild - clean Vercel cache
 import { usePrivy } from "@privy-io/react-auth";
 import { useWallets } from "@privy-io/react-auth";
 import { useRouter } from "next/navigation";
