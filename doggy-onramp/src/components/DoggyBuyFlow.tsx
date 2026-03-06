@@ -77,7 +77,7 @@ interface BuyPageNewProps {
   dbUser?: DbUser | null;
 }
 
-export default function BuyPageNew({ dbUser }: BuyPageNewProps) {
+export default function DoggyBuyFlow({ dbUser }: BuyPageNewProps) {
   const [amount, setAmount] = useState("200");
   const [method, setMethod] = useState("spei");
   const [step, setStep] = useState(0);

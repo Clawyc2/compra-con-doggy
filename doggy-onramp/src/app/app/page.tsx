@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { UsernameModal } from "@/components/UsernameModal";
 import { WalletPageReal } from "@/components/WalletPage";
-import BuyPageNew from "@/components/BuyPageNew";
+import DoggyBuyFlow from "@/components/DoggyBuyFlow";
 
 interface DbUser {
   id: string;
@@ -266,7 +266,7 @@ export default function AppPage() {
         {/* Page content */}
         <div className="flex-1 overflow-y-auto p-[22px_24px]">
           {currentPage === "dashboard" && <DashboardPage dbUser={dbUser} />}
-          {currentPage === "buy" && <BuyPageNew dbUser={dbUser} />}
+          {currentPage === "buy" && <DoggyBuyFlow dbUser={dbUser} />}
           {currentPage === "sell" && <SellPage />}
           {currentPage === "chart" && <ChartPage />}
           {currentPage === "wallet" && <WalletPageReal dbUser={dbUser} />}
