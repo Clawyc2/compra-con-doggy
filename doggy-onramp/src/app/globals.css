@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FFD700;
+  --secondary: #0A0B1A;
+  --accent: #1E1F36;
+}
+
+body {
+  background: #050d1f;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Team card border animation */
+@keyframes borderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
