@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { UsernameModal } from "@/components/UsernameModal";
 import { WalletPageReal } from "@/components/WalletPage";
-import { BuyPage } from "@/components/BuyPage";
+// BuyPage está definido localmente en este archivo
 
 interface DbUser {
   id: string;
@@ -406,12 +406,12 @@ function TxRow({ icon, type, title, desc, amount, sub, amountColor }: {
 }
 
 // Buy Page
-function BuyPage({ amount, setAmount, doggyReceived, buyFee }: {
-  amount: number;
-  setAmount: (v: number) => void;
-  doggyReceived: number;
-  buyFee: number;
-}) {
+function BuyPage({ dbUser }: { dbUser?: DbUser | null }) {
+  const [amount, setAmount] = useState(200);
+  const DOGGY_PRICE = 0.00000234;
+  const buyFee = amount * 0.03;
+  const buyNet = (amount - buyFee) * 0.056;
+  const doggyReceived = Math.floor(buyNet / DOGGY_PRICE);
   const quickAmounts = [50, 100, 200, 500, 1000];
 
   return (
@@ -501,7 +501,11 @@ function BuyPage({ amount, setAmount, doggyReceived, buyFee }: {
 
           <div className="mt-3.5 bg-[#13131e] border border-[rgba(245,200,66,0.15)] rounded-lg px-3 py-2.5">
             <div className="text-[10px] text-[#444460] uppercase tracking-[0.08em] mb-1">Wallet destino</div>
-            <div className="font-mono text-[11.5px] text-[#f5c842]">8xKmRt9pQwLa...3pRq</div>
+            <div className="font-mono text-[11.5px] text-[#f5c842]">
+              {dbUser?.wallet_address 
+                ? `${dbUser.wallet_address.slice(0, 8)}...${dbUser.wallet_address.slice(-6)}`
+                : "Sin wallet"}
+            </div>
             <div className="text-[10px] text-[#444460] mt-0.5">Tu wallet Privy embebida</div>
           </div>
 
