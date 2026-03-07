@@ -1,44 +1,159 @@
-import { PhoneMockup } from "@/components/PhoneMockup";
-import { AuthButton } from "@/components/AuthButton";
+import { Button } from "@/components/ui/Button";
+
+// Floating crypto icon component
+function CryptoIcon({ symbol, color, top, left, size = 48, delay = 0 }: {
+  symbol: string; color: string; top: string; left: string; size?: number; delay?: number;
+}) {
+  return (
+    <div
+      className="absolute flex items-center justify-center rounded-2xl text-white font-bold"
+      style={{
+        top, left, width: size, height: size,
+        background: `linear-gradient(135deg, ${color}33, ${color}88)`,
+        border: `1px solid ${color}66`,
+        boxShadow: `0 0 20px ${color}44`,
+        fontSize: size * 0.3,
+        animation: `floatIcon 3s ease-in-out infinite`,
+        animationDelay: `${delay}s`,
+      }}
+    >
+      {symbol}
+    </div>
+  );
+}
+
+// Stylized phone mockup
+function PhoneMockup() {
+  return (
+    <div className="relative w-48 md:w-64 mx-auto">
+      {/* Phone body */}
+      <div
+        className="relative rounded-3xl overflow-hidden"
+        style={{
+          background: "linear-gradient(160deg, #0d1f45 0%, #050d1f 100%)",
+          border: "2px solid rgba(0, 200, 255, 0.35)",
+          boxShadow: "0 0 40px rgba(0, 170, 255, 0.25), 0 0 80px rgba(0, 80, 255, 0.15)",
+          height: "340px",
+          padding: "16px",
+        }}
+      >
+        {/* Screen inner */}
+        <div
+          className="w-full h-full rounded-2xl flex flex-col items-center justify-center gap-4 relative overflow-hidden"
+          style={{ background: "rgba(5, 13, 31, 0.6)" }}
+        >
+          {/* Floating icons on phone screen */}
+          <div className="relative w-full h-full">
+            {/* Top icon */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-lg"
+                style={{
+                  background: "linear-gradient(135deg, #ff6b35, #ff9500)",
+                  boxShadow: "0 0 20px rgba(255, 107, 53, 0.5)",
+                }}
+              >
+                ◈
+              </div>
+            </div>
+            {/* Middle left */}
+            <div className="absolute top-1/3 left-4">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-lg"
+                style={{
+                  background: "linear-gradient(135deg, #00d4ff, #0066ff)",
+                  boxShadow: "0 0 20px rgba(0, 212, 255, 0.5)",
+                }}
+              >
+                ◆
+              </div>
+            </div>
+            {/* Middle right */}
+            <div className="absolute top-1/3 right-4">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-lg"
+                style={{
+                  background: "linear-gradient(135deg, #00e676, #00b248)",
+                  boxShadow: "0 0 20px rgba(0, 230, 118, 0.5)",
+                }}
+              >
+                ▲
+              </div>
+            </div>
+            {/* Center */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold"
+                style={{
+                  background: "linear-gradient(135deg, #6200ea, #aa00ff)",
+                  boxShadow: "0 0 24px rgba(162, 0, 255, 0.6)",
+                  fontSize: 20,
+                }}
+              >
+                ⬡
+              </div>
+            </div>
+            {/* Bottom */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, #ff4081, #c51162)",
+                  boxShadow: "0 0 20px rgba(255, 64, 129, 0.5)",
+                }}
+              >
+                ★
+              </div>
+            </div>
+            {/* Connection lines */}
+            <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 300">
+              <line x1="100" y1="40" x2="40" y2="110" stroke="#00d4ff" strokeWidth="1" />
+              <line x1="100" y1="40" x2="160" y2="110" stroke="#00d4ff" strokeWidth="1" />
+              <line x1="40" y1="110" x2="100" y2="150" stroke="#00d4ff" strokeWidth="1" />
+              <line x1="160" y1="110" x2="100" y2="150" stroke="#00d4ff" strokeWidth="1" />
+              <line x1="100" y1="150" x2="100" y2="220" stroke="#00d4ff" strokeWidth="1" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Outer glow ring */}
+      <div
+        className="absolute -inset-4 rounded-3xl pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(0,170,255,0.08) 0%, transparent 70%)",
+        }}
+      />
+
+      <style>{`
+        @keyframes floatIcon {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 export function HeroSection() {
   return (
     <section
-      id="inicio"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-      style={{ 
-        background: "linear-gradient(160deg, #0A0F1E 0%, #0D1530 60%, #080D1A 100%)",
-      }}
+      style={{ background: "linear-gradient(160deg, #050d1f 0%, #071530 50%, #050d1f 100%)" }}
     >
-      {/* Background orbs */}
+      {/* Background glow blobs */}
       <div
-        className="absolute w-[700px] h-[700px] rounded-full pointer-events-none"
+        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(245,166,35,0.13) 0%, transparent 70%)",
-          top: "-200px",
-          left: "-200px",
-          animation: "drift1 12s ease-in-out infinite alternate",
+          background: "radial-gradient(ellipse, rgba(0,100,255,0.12) 0%, transparent 70%)",
+          filter: "blur(40px)",
         }}
       />
       <div
-        className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute top-1/3 left-1/3 w-80 h-80 rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(0,229,255,0.11) 0%, transparent 70%)",
-          bottom: "-100px",
-          right: "-100px",
-          animation: "drift2 15s ease-in-out infinite alternate",
-        }}
-      />
-
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[2]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
+          background: "radial-gradient(ellipse, rgba(0,200,255,0.06) 0%, transparent 70%)",
+          filter: "blur(60px)",
         }}
       />
 
@@ -53,90 +168,41 @@ export function HeroSection() {
           userSelect: "none",
         }}
       >
-        DOGGY
+        CRYPTO
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full py-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
           <div>
             <h1
-              className="mb-9"
+              className="text-white mb-4"
               style={{
-                fontFamily: "'Syne', sans-serif",
-                fontSize: "clamp(64px, 15vw, 120px)",
+                fontSize: "clamp(2.5rem, 7vw, 5rem)",
                 fontWeight: 800,
-                lineHeight: 0.9,
-                letterSpacing: "-3px",
-                animation: "fadeUp 0.6s ease 0.1s both",
+                lineHeight: 1.1,
+                background: "linear-gradient(135deg, #ffffff 40%, #00d4ff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
-              <span className="block text-white">COMPRA</span>
-              <span 
-                className="block"
-                style={{
-                  background: "linear-gradient(90deg, #00E5FF 0%, #F5A623 30%, #FFD080 100%)",
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  animation: "shine 4s linear infinite",
-                }}
-              >
-                DOGGY
-              </span>
+              CryptoDo
             </h1>
-
-            <p 
-              className="text-lg md:text-[22px] leading-relaxed mb-11 max-w-md"
-              style={{
-                color: "rgba(255,255,255,0.5)",
-                fontWeight: 300,
-                animation: "fadeUp 0.6s ease 0.2s both",
-              }}
-            >
-              Desde <strong style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600 }}>$50 pesos</strong> con tu cuenta bancaria.<br />
-              Sin KYC. Sin complicaciones. Sin esperas.
+            <p className="text-gray-400 mb-3 text-sm uppercase tracking-widest">
+              THE BEST crypto smart-contract to make better future
             </p>
-
-            <div 
-              className="flex flex-col gap-4"
-              style={{ animation: "fadeUp 0.6s ease 0.3s both" }}
-            >
-              {[
-                "Pago por SPEI en segundos",
-                "Tokens en tu wallet automáticamente",
-                "3% comisión. Nada más.",
-              ].map((text, i) => (
-                <div key={i} className="flex items-center gap-3.5">
-                  <div 
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-xs"
-                    style={{
-                      background: "rgba(0,229,255,0.08)",
-                      border: "1.5px solid rgba(0,229,255,0.35)",
-                      color: "#00E5FF",
-                    }}
-                  >
-                    ✓
-                  </div>
-                  <span 
-                    className="text-base md:text-lg"
-                    style={{ color: "rgba(255,255,255,0.65)", fontWeight: 300 }}
-                  >
-                    {text}
-                  </span>
-                </div>
-              ))}
-              
-              {/* Auth Button */}
-              <div className="mt-8" style={{ animation: "fadeUp 0.6s ease 0.4s both" }}>
-                <AuthButton />
-              </div>
+            <p className="text-gray-300 mb-2 text-sm">
+              Start building your smart contract with{" "}
+              <span className="text-cyan-400 font-semibold">CRYPTODO</span>
+            </p>
+            <div className="mt-8">
+              <Button size="lg">Start a contract</Button>
             </div>
           </div>
 
-          {/* Right: Phone mockup with animation */}
-          <div className="flex justify-end md:pr-16 lg:pr-24">
+          {/* Right: Phone mockup */}
+          <div className="flex justify-center md:justify-end">
             <PhoneMockup />
           </div>
         </div>
@@ -145,26 +211,8 @@ export function HeroSection() {
       {/* Bottom fade */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(8,13,26,0.8))" }}
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(5,13,31,0.8))" }}
       />
-
-      <style>{`
-        @keyframes drift1 {
-          from { transform: translate(0,0) scale(1); }
-          to { transform: translate(80px,60px) scale(1.15); }
-        }
-        @keyframes drift2 {
-          from { transform: translate(0,0) scale(1); }
-          to { transform: translate(-60px,-80px) scale(1.2); }
-        }
-        @keyframes shine {
-          to { background-position: 200% center; }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   );
 }

@@ -207,4 +207,12 @@
 
 ---
 
-_Last updated: 2026-02-28_
+## Error 9: Romper UI por Arreglar Build (2026-03-07)
+- **Problema:** Hice múltiples cambios en componentes para arreglar build y rompí la UI
+- **Causa:** Me enfoqué en que `npm run build` pasara sin verificar diseño
+- **Impacto:** Casi pierde horas/días de trabajo de Luis
+- **Lección:** UN cambio → test → push. NUNCA múltiples cambios a la vez.
+
+---
+
+_Last updated: 2026-03-07_

@@ -1,25 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter, Syne, DM_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
-import { AuthProvider } from '@/components/AuthProvider'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const syne = Syne({ 
-  subsets: ['latin'],
-  variable: '--font-syne',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'DOGGY OnRamp – Fiat to $DOGGY Gateway',
@@ -32,12 +15,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className={inter.className}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
-      </body>
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }

@@ -13,16 +13,3 @@ body {
   color: white;
   font-family: 'Inter', sans-serif;
 }
-
-/* Team card border animation */
-@keyframes borderRotate {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}

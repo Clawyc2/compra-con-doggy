@@ -1,4 +1,6 @@
-"use client";
+import { GlowCard } from "@/components/ui/GlowCard";
+import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Button } from "@/components/ui/Button";
 
 interface StepCardProps {
   step: number;
@@ -7,100 +9,115 @@ interface StepCardProps {
 }
 
 function StepCard({ step, title, description }: StepCardProps) {
-  const accentColor = "#00d4ff";
-
   return (
-    <div
-      className="rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1"
-      style={{
-        background: "rgba(8, 18, 45, 0.8)",
-        border: `1px solid ${accentColor}33`,
-        boxShadow: `0 0 30px ${accentColor}10, inset 0 0 30px ${accentColor}05`,
-        backdropFilter: "blur(10px)",
-      }}
-    >
-      <div
-        className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white mx-auto mb-5"
-        style={{
-          background: `linear-gradient(135deg, #0066ff, #00d4ff)`,
-          boxShadow: `0 0 20px rgba(0, 212, 255, 0.5)`,
-        }}
-      >
-        {step}
+    <GlowCard variant="cyan" className="h-full" padding="p-5">
+      <div className="flex items-start gap-3 mb-3">
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #0066ff, #00d4ff)",
+            boxShadow: "0 0 12px rgba(0, 170, 255, 0.5)",
+          }}
+        >
+          {step}
+        </div>
+        <h3 className="text-white text-sm font-semibold pt-0.5">{title}</h3>
       </div>
-      <h3 className="text-white text-lg font-semibold mb-3">{title}</h3>
-      <div
-        className="h-px w-16 mx-auto mb-4"
-        style={{ background: `linear-gradient(90deg, transparent, ${accentColor}66, transparent)` }}
-      />
-      <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
-    </div>
+      <p className="text-gray-400 text-xs leading-5">{description}</p>
+    </GlowCard>
   );
 }
 
 const steps = [
   {
-    title: "Crea tu cuenta",
-    description: "Sin experiencia previa. Al registrarte, Doggy OnRamp genera tu wallet automáticamente — lista para recibir tokens desde el primer día.",
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
   },
   {
-    title: "Tú decides cuánto",
-    description: "Desde $50 MXN ya puedes entrar al mundo crypto. Sin montos mínimos absurdos, sin complicaciones.",
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
   },
   {
-    title: "Sin papeleos",
-    description: "No pedimos documentos ni datos personales. Tu identidad es tuya — tus tokens también.",
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
   },
   {
-    title: "$DOGGY en tu wallet",
-    description: "En minutos, tus tokens llegan directo a tu wallet. Así de simple. Así de rápido.",
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
+  },
+  {
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
+  },
+  {
+    title: "Everyday practice",
+    description:
+      "Everyday practice shows that the constant information and propaganda support of our activities plays an important role in shaping the progressive training system.",
   },
 ];
 
 export function HowItWorksSection() {
   return (
     <section
-      id="como-funciona"
       className="relative py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #050d1f 0%, #071a38 50%, #050d1f 100%)" }}
+      style={{ background: "linear-gradient(180deg, #050d1f 0%, #060f25 100%)" }}
     >
-      {/* Background glow */}
+      {/* Background watermark */}
       <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+        className="absolute inset-0 flex items-center justify-start pointer-events-none select-none overflow-hidden"
         style={{
-          background: "radial-gradient(ellipse, rgba(0,100,255,0.08) 0%, transparent 70%)",
-          filter: "blur(60px)",
+          fontSize: "clamp(5rem, 14vw, 12rem)",
+          fontWeight: 900,
+          color: "rgba(255,255,255,0.015)",
+          letterSpacing: "0.05em",
+          paddingLeft: "2rem",
         }}
-      />
+      >
+        HOW
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <h2
-            className="text-white mb-4"
-            style={{
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-              fontWeight: 700,
-            }}
-          >
-            ¿Cómo Funciona DOGGY OnRamp?
-          </h2>
-          <div
-            className="h-1 w-24 mx-auto rounded-full"
-            style={{ background: "linear-gradient(90deg, #0066ff, #00d4ff)" }}
-          />
+        {/* Header row */}
+        <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
+          <div className="flex items-center gap-4">
+            <h2
+              className="text-white"
+              style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 700 }}
+            >
+              HOW IT WORKS
+            </h2>
+            <div
+              className="h-px flex-1 min-w-16 max-w-32"
+              style={{ background: "linear-gradient(90deg, rgba(0,212,255,0.4), transparent)" }}
+            />
+          </div>
+          <Button variant="outline" size="sm">Documentary</Button>
         </div>
 
-        {/* Steps grid - 4 en fila */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, i) => (
-            <StepCard
-              key={i}
-              step={i + 1}
-              title={step.title}
-              description={step.description}
-            />
-          ))}
+        {/* Steps grid */}
+        <div
+          className="rounded-2xl p-6"
+          style={{
+            background: "rgba(8, 20, 50, 0.6)",
+            border: "1px solid rgba(0, 212, 255, 0.1)",
+            boxShadow: "0 0 40px rgba(0, 100, 255, 0.06)",
+          }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {steps.map((step, i) => (
+              <StepCard
+                key={i}
+                step={i + 1}
+                title={step.title}
+                description={step.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -3,7 +3,9 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { AdvantagesSection } from "@/components/AdvantagesSection";
+import { TokenomicsSection } from "@/components/TokenomicsSection";
 import { TeamSection } from "@/components/TeamSection";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -13,7 +15,9 @@ export default function Home() {
       <AboutSection />
       <HowItWorksSection />
       <AdvantagesSection />
+      <TokenomicsSection />
       <TeamSection />
+      <Footer />
     </main>
   );
 }

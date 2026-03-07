@@ -15,7 +15,7 @@ Before doing anything else:
 3. Read `memory/YYYY-MM-DD-*.md` (today + yesterday, any description) for recent context
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
-Don't ask permission. Just do it.
+**🔑 APIs en:** `~/.env` (Vercel, GitHub, Netlify, etc.)
 
 ## Memory
 

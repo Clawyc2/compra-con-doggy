@@ -1,13 +1,8 @@
 "use client";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Hexagon } from "lucide-react";
 
-const navLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Qué es DOGGY", href: "#que-es" },
-  { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Creadores", href: "#creadores" },
-];
+const navLinks = ["Page 1", "Page 2", "Page 3", "Page 4"];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -24,16 +19,17 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <span
-            className="text-white font-bold text-xl tracking-wide"
-            style={{ 
-              fontFamily: "sans-serif",
-              background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
+          <div
+            className="w-7 h-7 rounded-full flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, #00d4ff, #0055ff)" }}
           >
-            $DOGGY
+            <Hexagon size={14} color="white" fill="white" />
+          </div>
+          <span
+            className="text-white font-bold text-lg tracking-wide"
+            style={{ fontFamily: "sans-serif" }}
+          >
+            CryptoDo
           </span>
         </div>
 
@@ -41,26 +37,35 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.label}
-              href={link.href}
-              className="text-gray-400 hover:text-yellow-400 text-sm transition-colors duration-200"
+              key={link}
+              href="#"
+              className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200"
             >
-              {link.label}
+              {link}
             </a>
           ))}
         </div>
 
-        {/* Right side - CTA */}
+        {/* Right side */}
         <div className="hidden md:flex items-center gap-3">
-          <button 
-            className="px-5 py-2 rounded text-sm text-black font-semibold"
+          <span
+            className="px-3 py-1 rounded-full text-xs text-green-400"
             style={{
-              background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
-              boxShadow: "0 0 16px rgba(255, 215, 0, 0.35)",
+              border: "1px solid rgba(74, 222, 128, 0.4)",
+              background: "rgba(74, 222, 128, 0.08)",
             }}
           >
-            Comprar DOGGY
+            ● Connected
+          </span>
+          <button className="btn-primary px-5 py-2 rounded text-sm text-white">
+            Start a contract
           </button>
+          <div
+            className="w-8 h-8 rounded flex items-center justify-center text-gray-400 cursor-pointer"
+            style={{ background: "rgba(255,255,255,0.06)" }}
+          >
+            ⊕
+          </div>
         </div>
 
         {/* Mobile toggle */}
@@ -80,24 +85,30 @@ export function Navbar() {
         >
           {navLinks.map((link) => (
             <a
-              key={link.label}
-              href={link.href}
-              className="text-gray-400 hover:text-yellow-400 text-sm py-1"
-              onClick={() => setMobileOpen(false)}
+              key={link}
+              href="#"
+              className="text-gray-400 hover:text-cyan-400 text-sm py-1"
             >
-              {link.label}
+              {link}
             </a>
           ))}
-          <button 
-            className="px-5 py-2 rounded text-sm text-black font-semibold mt-2 w-fit"
-            style={{
-              background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
-            }}
-          >
-            Comprar DOGGY
+          <button className="btn-primary px-5 py-2 rounded text-sm text-white mt-2 w-fit">
+            Start a contract
           </button>
         </div>
       )}
+
+      <style>{`
+        .btn-primary {
+          background: linear-gradient(135deg, #0055ff 0%, #00aaff 100%);
+          box-shadow: 0 0 16px rgba(0, 170, 255, 0.35);
+          transition: box-shadow 0.2s, opacity 0.2s;
+        }
+        .btn-primary:hover {
+          box-shadow: 0 0 24px rgba(0, 170, 255, 0.55);
+          opacity: 0.92;
+        }
+      `}</style>
     </nav>
   );
 }
